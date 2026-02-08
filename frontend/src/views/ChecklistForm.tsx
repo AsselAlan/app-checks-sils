@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { checklistConfig } from '../utils/checklistConfig';
 import { fillPdf } from '../utils/pdfGenerator';
 import SignaturePad from '../components/SignaturePad';
-import { Download, Save, ArrowLeft, Share2 } from 'lucide-react';
+import { Download, Save, ArrowLeft, Share2, User } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import './ChecklistForm.css';
 
@@ -23,6 +23,38 @@ const ChecklistForm: React.FC = () => {
     });
     const [generating, setGenerating] = useState(false);
     const [pdfUrl, setPdfUrl] = useState<string | null>(null);
+    const [profiles, setProfiles] = useState<any[]>([]);
+    const [selectedProfileId, setSelectedProfileId] = useState<string>('');
+
+    // Load profiles on mount
+    useEffect(() => {
+        const stored = localStorage.getItem('SILSTECH_RP_PROFILES');
+        if (stored) {
+            try {
+                setProfiles(JSON.parse(stored));
+            } catch (e) {
+                console.error("Error parsing profiles", e);
+            }
+        }
+    }, []);
+
+
+
+    const handleSelectProfile = (id: string) => {
+        setSelectedProfileId(id);
+        if (!id) {
+            // Clear fields if desired, or just leave them
+            return;
+        }
+        const profile = profiles.find(p => p.id === id);
+        if (profile) {
+            setFormData(prev => ({
+                ...prev,
+                responsable_silstech: profile.name,
+                firma_responsable_silstech: profile.signature
+            }));
+        }
+    };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value, type } = e.target;
@@ -130,6 +162,32 @@ const ChecklistForm: React.FC = () => {
                 <h1>{checklistConfig.title}</h1>
             </header>
 
+            {/* Profile Manager Section */}
+            <div className="profile-manager section-card">
+                <div className="profile-header">
+                    <h3><User size={18} /> Gestión de Perfil (Responsable Silstech)</h3>
+                </div>
+                <div className="profile-controls">
+                    <select
+                        value={selectedProfileId}
+                        onChange={(e) => handleSelectProfile(e.target.value)}
+                        className="profile-select"
+                    >
+                        <option value="">-- Seleccionar Perfil Guardado --</option>
+                        {profiles.map(p => (
+                            <option key={p.id} value={p.id}>{p.name}</option>
+                        ))}
+                    </select>
+
+                    <div className="profile-save-hint">
+                        <small>
+                            Selecciona un perfil para autocompletar nombre y firma.
+                            Para gestionar perfiles (crear/borrar), ve al Inicio.
+                        </small>
+                    </div>
+                </div>
+            </div>
+
             <form onSubmit={handleSubmit} className="checklist-form">
                 {checklistConfig.sections.map((section, idx) => (
                     <div key={idx} className="form-section">
@@ -236,6 +294,7 @@ const ChecklistForm: React.FC = () => {
                                         <label>{sig.label}</label>
                                         <SignaturePad
                                             label=""
+                                            value={formData[sig.id]} // Pass current value to show pre-loaded signatures
                                             onEnd={(data) => handleSignature(sig.id, data)}
                                         />
                                     </div>

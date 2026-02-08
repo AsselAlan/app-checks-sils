@@ -210,3 +210,94 @@
         justify-content: flex-start;
     }
 }
+
+/* Profile Manager Styles */
+.profile-manager {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 2rem;
+}
+
+.profile-header {
+    margin-bottom: 1rem;
+    color: #334155;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 0.5rem;
+}
+
+.profile-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.profile-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+}
+
+.profile-select {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.6rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+.btn-delete-profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fee2e2;
+    color: #ef4444;
+    border: 1px solid #fecaca;
+    border-radius: 6px;
+    padding: 0.6rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-delete-profile:hover {
+    background-color: #fecaca;
+    color: #dc2626;
+}
+
+.profile-save-hint {
+    width: 100%;
+    margin-top: 0.5rem;
+    color: #64748b;
+    font-size: 0.85rem;
+}
+
+.btn-save-profile-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eff6ff;
+    color: #2563eb;
+    border: 1px solid #bfdbfe;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.btn-save-profile-action:hover {
+    background-color: #dbeafe;
+    border-color: #93c5fd;
+}
+
+/* Ensure section-card behaves like form-section if used separately */
+.section-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+}

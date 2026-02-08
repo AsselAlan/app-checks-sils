@@ -5,12 +5,20 @@ import './SignaturePad.css';
 interface SignaturePadProps {
     onEnd: (dataUrl: string) => void;
     label?: string;
+    value?: string;
 }
 
-const SignaturePad: React.FC<SignaturePadProps> = ({ onEnd, label }) => {
+const SignaturePad: React.FC<SignaturePadProps> = ({ onEnd, label, value }) => {
     const sigCanvas = useRef<SignatureCanvas>(null);
     const [isOpen, setIsOpen] = useState(false);
-    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+    const [previewUrl, setPreviewUrl] = useState<string | null>(value || null);
+
+    // Update preview if value prop changes (e.g. profile loaded)
+    React.useEffect(() => {
+        if (value !== previewUrl) {
+            setPreviewUrl(value || null);
+        }
+    }, [value]);
 
     const clear = () => {
         sigCanvas.current?.clear();

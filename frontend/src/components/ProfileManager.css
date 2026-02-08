@@ -1,0 +1,280 @@
+/* Profile Manager Modal Overlay */
+.pm-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Modal Window */
+.pm-modal {
+    background: #ffffff;
+    color: #1f2937;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 600px;
+    max-width: 90%;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Header */
+.pm-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 1rem;
+}
+
+.pm-header h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0;
+    color: #111827;
+    font-size: 1.5rem;
+}
+
+.pm-close {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #6b7280;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pm-close:hover {
+    background-color: #f3f4f6;
+    color: #374151;
+}
+
+/* Section Styling */
+.pm-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.pm-section h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #374151;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+/* Form Groups */
+.pm-form-group {
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.pm-form-group label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #4b5563;
+}
+
+.pm-input {
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #fff;
+    color: #111827;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    width: 100%;
+    box-sizing: border-box;
+    /* details matter */
+}
+
+.pm-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.pm-input::placeholder {
+    color: #9ca3af;
+}
+
+/* Signature Area */
+.pm-sig-container {
+    border: 2px dashed #d1d5db;
+    background: #f9fafb;
+    border-radius: 6px;
+    height: 160px;
+    position: relative;
+    overflow: hidden;
+}
+
+.pm-sig-canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.pm-clear-sig {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    color: #4b5563;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s;
+}
+
+.pm-clear-sig:hover {
+    background: #f3f4f6;
+    border-color: #d1d5db;
+}
+
+/* Buttons */
+.pm-save-btn {
+    background: #10b981;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    width: 100%;
+    transition: background-color 0.2s;
+    font-size: 1rem;
+}
+
+.pm-save-btn:hover {
+    background: #059669;
+}
+
+/* Profiles List */
+.pm-list {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 1.5rem;
+}
+
+.pm-empty {
+    text-align: center;
+    color: #6b7280;
+    font-style: italic;
+    background: #f9fafb;
+    padding: 2rem;
+    border-radius: 6px;
+}
+
+.pm-profiles-ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.pm-profile-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #fff;
+    transition: all 0.2s;
+}
+
+.pm-profile-item:hover {
+    border-color: #d1d5db;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.pm-profile-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.pm-profile-name {
+    font-weight: 600;
+    color: #111827;
+}
+
+.pm-profile-sig-preview {
+    height: 40px;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    background: #fff;
+    padding: 2px;
+}
+
+.pm-delete-btn {
+    background: #fee2e2;
+    color: #ef4444;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pm-delete-btn:hover {
+    background: #fecaca;
+    color: #dc2626;
+}
+
+/* Scrollbar styling for list */
+.pm-modal::-webkit-scrollbar {
+    width: 8px;
+}
+
+.pm-modal::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.pm-modal::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 4px;
+}
+
+.pm-modal::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}

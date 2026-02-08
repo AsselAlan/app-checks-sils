@@ -7,6 +7,38 @@
 .header {
     text-align: center;
     margin-bottom: 3rem;
+    position: relative;
+    padding-top: 2rem;
+}
+
+.profile-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(4px);
+}
+
+.profile-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-1px);
+}
+
+/* Ensure header content is centered despite absolute button */
+.header h1 {
+    margin-top: 0;
 }
 
 .templates-grid {
