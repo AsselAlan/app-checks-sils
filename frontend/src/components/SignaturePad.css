@@ -1,0 +1,111 @@
+.signature-pad-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.signature-preview {
+  width: 100%;
+  height: 80px;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  transition: all 0.2s;
+  overflow: hidden;
+}
+
+.signature-preview:hover {
+  border-color: #3b82f6;
+  background-color: #eff6ff;
+}
+
+.placeholder-text {
+  color: #888;
+  font-size: 0.9em;
+}
+
+.img-preview {
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Modal Styles */
+.signature-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.signature-modal-content {
+  background: white;
+  width: 95%;
+  max-width: 600px;
+  height: 70vh;
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.modal-canvas-wrapper {
+  flex: 1;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  background: #fff;
+}
+
+.modal-sigCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.btn-cancel,
+.btn-clear,
+.btn-confirm {
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  flex: 1;
+}
+
+.btn-cancel {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.btn-clear {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.btn-confirm {
+  background: #2563eb;
+  color: white;
+  height: 100%;
+  border-radius: 4px;
+}
